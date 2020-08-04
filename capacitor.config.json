@@ -1,0 +1,13 @@
+{
+  "appId": "com.qrlogin.app",
+  "appName": "login_via_qr",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
