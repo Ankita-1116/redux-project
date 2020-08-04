@@ -34,8 +34,7 @@ function App() {
           <Route path="/qrscan" component={QRCode} />
           <Route path="/forminput" component={UserInfo} exact={true} />
           <Route path="/userData" component={UserQr} exact={true} />
-          <Route path="/" render={() => <Redirect to="/qrscan" />} exact={true} />
-          <Redirect exact from="/" to="/login" />
+          <Redirect exact from="/" to="/qrscan" />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
