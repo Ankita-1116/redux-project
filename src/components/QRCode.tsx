@@ -41,7 +41,7 @@ function QRCode() {
         console.error(err)
     }
     return <>
-        <Layout back={true} tabs={true}>
+        <Layout back={false} tabs={true}>
             <IonContent>
                 <IonGrid>
                     <IonRow class="ion-justify-content-center ">

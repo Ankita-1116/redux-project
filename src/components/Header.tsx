@@ -11,7 +11,7 @@ const Header = (props: any) => {
                         <IonBackButton defaultHref="/" />
                     </IonButtons>
                 }
-                <IonTitle>User Info</IonTitle>
+                <IonTitle>Please flash QR Code you received in your email or first visit</IonTitle>
             </IonToolbar>
         </IonHeader>
     </>
