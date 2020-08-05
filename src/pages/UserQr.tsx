@@ -21,7 +21,7 @@ const UserQr = (props: any) => {
             <h2 className="ion-text-center">{props.history.location.state.data.successMessage}</h2>
             {
                 props.history.location.state != undefined &&
-                <IonImg src={"data:image/png;base64," + imageData} style={{ maxWidth: "50%", margin: "0 auto" }} />
+                <IonImg src={"data:image/png;base64," + imageData} style={{ maxWidth: "500px",width:"100%", margin: "0 auto" }} />
             }
             <h3 className="ion-text-center">Redirecting: 00:{timer == 10 ? timer : "0" + timer}</h3>
         </Layout>
