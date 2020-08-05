@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import QrReader from 'react-qr-reader'
-import { IonToast, IonContent, IonGrid, IonRow, IonCol } from '@ionic/react'
+import { IonToast, IonContent, IonGrid, IonRow, IonCol, IonLoading } from '@ionic/react'
 import Tabs from './Tabs';
 import Header from './Header';
 import Layout from './Layout';
@@ -8,17 +8,16 @@ import Form from './Form';
 import CustomToast from './CustomToast';
 import { Toast } from '../Models/Contants';
 import { roamerSave_API } from '../services/Services';
+import { useHistory } from 'react-router';
 
 function QRCode() {
-    const [result, setResult] = useState([])
-    const [userName, setUserName] = useState('');
-    const [showToast, setShowToast] = useState(false);
-    const [toastInfo, setToastInfo] = useState('');
-    const [userFormData, setUserFormData] = useState({});
-
+    const history = useHistory()
+    const [QRResFlag, setQRResFlag] = useState(true)
+    const [showLoading, setShowLoading] = useState(false);
 
     const handleScan = (res: any) => {
-        if (toastInfo == '' && res) {
+        if (QRResFlag && res) {
+            setQRResFlag(false);
             const data = JSON.parse(res);
             var formData = {
                 'firstName': data.firstName,
@@ -27,25 +26,28 @@ function QRCode() {
                 'phone': data.phone,
                 'zipCode': data.zipCode
             };
-            
+            setShowLoading(true);
             roamerSave_API(JSON.stringify(formData), onQRSuccess)
         }
     }
     const onQRSuccess = (status: any, response: any) => {
-        console.log(response.data)
-        setShowToast(true);
-        const name = response.data[0].successMessage
-        status == "success" ? setToastInfo(name) : setToastInfo(response.data)
+        setShowLoading(false);
+        history.push('/userData', {
+            data: response.data[0]
+        });
+        setTimeout(() => {
+            window.location.href = "/qrscan"
+        }, 10000);
     }
     const handleError = (err: any) => {
         console.error(err)
     }
     return <>
-        <Layout back={false} tabs={true}>
+        <Layout back={false} tabs={true} heading="Please flash the QR-Code you received in your email">
             <IonContent>
                 <IonGrid>
                     <IonRow class="ion-justify-content-center ">
-                        <IonCol  style={{"maxWidth":"calc(100vh - 150px)"}}>
+                        <IonCol style={{ "maxWidth": "calc(100vh - 160px)" }}>
                             <QrReader
                                 delay={300}
                                 onError={handleError}
@@ -58,16 +60,13 @@ function QRCode() {
                 </IonGrid>
             </IonContent>
         </Layout>
-        {
-            toastInfo != '' &&
-            <IonToast
-                isOpen={showToast}
-                onDidDismiss={() => {setShowToast(false);setToastInfo('')}}
-                message={toastInfo}
-                duration={Toast.timeInterval}
-                cssClass="toastText"
-            />
-        }
+        <IonLoading
+        cssClass='my-custom-class'
+        isOpen={showLoading}
+        onDidDismiss={() => setShowLoading(false)}
+        message={'Please wait...'}
+        duration={10000}
+      />
     </>
 }
 

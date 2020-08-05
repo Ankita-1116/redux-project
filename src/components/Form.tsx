@@ -36,7 +36,7 @@ const Form = (component: any) => {
 
             {
                 component.name == 'button' &&
-                <IonButton color={component.color} fill="solid" expand="full" onClick={component.callback}>{component.title}</IonButton>
+                <IonButton color={component.color} fill="solid" size="large" expand="full" onClick={component.callback}>{component.title}</IonButton>
 
 
             }

@@ -2,6 +2,7 @@ import React from 'react'
 import { IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle } from '@ionic/react'
 
 const Header = (props: any) => {
+    console.log(props)
     return <>
         <IonHeader>
             <IonToolbar style={{padding: "8px 0"}}>
@@ -11,7 +12,7 @@ const Header = (props: any) => {
                         <IonBackButton defaultHref="/" />
                     </IonButtons>
                 }
-                <IonTitle>Please flash QR Code you received in your email or first visit</IonTitle>
+                <IonTitle className="ion-text-center">{props.heading}</IonTitle>
             </IonToolbar>
         </IonHeader>
     </>

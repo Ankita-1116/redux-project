@@ -6,7 +6,7 @@ import { IonContent } from '@ionic/react'
 
 const Layout = (props: any) => {
     return <>
-        <Header back={props.back} />
+        <Header back={props.back} heading={props.heading}/>
         <IonContent class="tab-location">
             {
                 props.children

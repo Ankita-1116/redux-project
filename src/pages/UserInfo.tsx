@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Tabs from '../components/Tabs'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
-import { IonContent, IonGrid, IonRow, IonCol, IonToast } from '@ionic/react'
+import { IonContent, IonGrid, IonRow, IonCol, IonToast, IonLoading } from '@ionic/react'
 import Form from '../components/Form'
 import { roamerSave_API } from '../services/Services'
 import CustomToast from '../components/CustomToast'
@@ -12,9 +12,7 @@ import { useHistory } from 'react-router'
 
 function UserInfo() {
     const history = useHistory()
-
-    const [toastInfo, setToastInfo] = useState('');
-    const [showToast, setShowToast] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
 
     const [mobileNumber, setMobile] = useState('');
     const [mobileErrorMsz, setMobileErrorMsz] = useState(' ');
@@ -69,26 +67,27 @@ function UserInfo() {
                 'lastName': lastName,
                 'email': email,
                 'phone': mobileNumber,
-                'zipCode': zipCode
+                'zipCode': zipCode,
+                'numVists': 0
+
             };
             setUserFormData(JSON.stringify(formData));
+            setShowLoading(true);
             roamerSave_API(JSON.stringify(formData), onUserRegisterSuccess)
         }
     }
 
     const onUserRegisterSuccess = (status: any, response: any) => {
-        setShowToast(true);
-        console.log(response)
+        setShowLoading(false);
         history.push('/userData', {
             data: response.data[0]
         });
         setTimeout(() => {
-            window.location.href="/qrscan"
+            window.location.href = "/qrscan"
         }, 10000);
-        // <CustomToast showToast={true} info={`Welcome ${data.name}`} />
     }
     return <>
-        <Layout back={true} tabs={true}>
+        <Layout back={false} tabs={true} heading="Please enter your details ">
             <IonContent>
                 <IonGrid>
                     <IonRow class="">
@@ -145,17 +144,13 @@ function UserInfo() {
                 </IonGrid>
             </IonContent>
         </Layout>
-        {
-            toastInfo != '' &&
-            <IonToast
-                isOpen={showToast}
-                onDidDismiss={() => setShowToast(false)}
-                message={toastInfo}
-                duration={Toast.timeInterval}
-                cssClass="toastText"
-
-            />
-        }
+        <IonLoading
+            cssClass='my-custom-class'
+            isOpen={showLoading}
+            onDidDismiss={() => setShowLoading(false)}
+            message={'Please wait...'}
+            duration={10000}
+        />
     </>
 }
 
