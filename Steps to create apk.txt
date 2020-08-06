@@ -1,0 +1,6 @@
+npm run build
+npx cap init
+npx cap add android
+npx cap sync
+npx cap open android
+From android studio you can create apk
