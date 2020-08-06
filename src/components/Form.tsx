@@ -10,7 +10,7 @@ const Form = (component: any) => {
                 component.name == 'inputText' &&
                 <>
                     <IonItem class="ion-no-padding input-wrap">
-                        <IonLabel position="fixed">{component.label}</IonLabel>
+                        <IonLabel position="floating">{component.label}</IonLabel>
                         <IonInput onIonChange={(e: any) => {
                             component.callback(component.returnName, e.target.value, component.required);
                         }}> </IonInput>
@@ -37,8 +37,6 @@ const Form = (component: any) => {
             {
                 component.name == 'button' &&
                 <IonButton color={component.color} fill="solid" size="large" expand="full" onClick={component.callback}>{component.title}</IonButton>
-
-
             }
         </>
     )

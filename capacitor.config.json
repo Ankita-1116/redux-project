@@ -1,6 +1,6 @@
 {
-  "appId": "com.qrlogin.app",
-  "appName": "login_via_qr",
+  "appId": "com.intellipath.visitum",
+  "appName": "visitum",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",

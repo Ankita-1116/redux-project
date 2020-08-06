@@ -67,7 +67,7 @@ function UserInfo() {
                 'lastName': lastName,
                 'email': email,
                 'phone': mobileNumber,
-                'zipCode': zipCode,
+                'postCode': zipCode,
                 'numVists': 0
 
             };
@@ -136,7 +136,7 @@ function UserInfo() {
                                 </IonCol>
 
                                 <IonCol size="12" class="ion-margin-top">
-                                    <Form name="button" color="secondary" title="Login" callback={getLogin} />
+                                    <Form name="button" color="success" title="Login" callback={getLogin} />
                                 </IonCol>
                             </IonRow>
                         </IonCol>
