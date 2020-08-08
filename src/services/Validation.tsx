@@ -17,7 +17,7 @@ const checkValidation: any = {
         if (name == 'address') {
             return checkValidation.address(value) ? '' : 'maximum 10 character allowed';
         }
-        if (name == 'firstName' || name == 'lastName') {
+        if (name == 'blank') {
             return checkValidation.blankCheck(value) ? '' : 'Please enter required field';
         }
         if (name == 'email') {

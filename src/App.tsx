@@ -24,6 +24,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import UserQr from './pages/UserQr';
+import UserList from './pages/UserList';
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
           <Route path="/qrscan" component={QRCode} />
           <Route path="/forminput" component={UserInfo} exact={true} />
           <Route path="/userData" component={UserQr} exact={true} />
-          <Redirect exact from="/" to="/qrscan" />
+          <Route path="/userlist" component={UserList} exact={true} />
+          <Redirect exact from="/" to="/login" />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
