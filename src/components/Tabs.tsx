@@ -10,7 +10,7 @@ const Tabs = () => {
     const history = useHistory()
 
     const openQr = () => {
-        history.push('/qrscan');
+        history.push('/');
     }
     const openForm = () => {
         history.push('/forminput');

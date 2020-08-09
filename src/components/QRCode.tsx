@@ -36,7 +36,7 @@ function QRCode() {
             data: response.data[0]
         });
         setTimeout(() => {
-            window.location.href = "/qrscan"
+            window.location.href = "/"
         }, 10000);
     }
     const handleError = (err: any) => {

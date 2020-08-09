@@ -25,18 +25,24 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import UserQr from './pages/UserQr';
 import UserList from './pages/UserList';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const globalState = useSelector((state: any) => state);
+
   return (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
           <Route path="/login" component={Login} />
+          <Route path="/home" component={Home} />
           <Route path="/qrscan" component={QRCode} />
           <Route path="/forminput" component={UserInfo} exact={true} />
           <Route path="/userData" component={UserQr} exact={true} />
           <Route path="/userlist" component={UserList} exact={true} />
-          <Redirect exact from="/" to="/login" />
+          {
+            globalState.userType == '' ? <Redirect exact from="/" to="/login" /> : <Redirect exact from="/" to="/home" />
+          }
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

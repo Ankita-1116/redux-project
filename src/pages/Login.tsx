@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import Layout from '../components/Layout';
 import { IonContent, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Login() {
 
@@ -13,8 +14,9 @@ export default function Login() {
     const [usernameErrorMsz, setUserNameErrorMsz] = useState(' ');
     const [requiredField, setRequiredField] = useState(false);
     const [mobileErrorMsz, setMobileErrorMsz] = useState(' ');
-    const history = useHistory()
+    const history = useHistory();
 
+    const dispatch = useDispatch()
     const [password, setPassword] = useState('');
     const [passwordErrorMsz, setPasswordErrorMsz] = useState(' ');
 
@@ -43,13 +45,15 @@ export default function Login() {
 
         }
         else if (username == 'admin' && password == '123456') {
-            history.push('/userlist');
+            dispatch({ type: "ADD", userType: 'admin' })
+            history.push('/home');
         }
         else if (username == 'reception' && password == '654321') {
-            history.push('/qrscan');
+            dispatch({ type: "ADD", userType: 'reception' })
+            history.push('/home');
         }
         else {
-                setPasswordErrorMsz('Please check your credentials!!!')
+            setPasswordErrorMsz('Please check your credentials!!!')
         }
         // if (mobileErrorMsz == '' && passwordErrorMsz == '') {
         //     var formData = new FormData();
@@ -62,7 +66,7 @@ export default function Login() {
         history.push('/qrscan');
     }
     return <>
-        <Layout back={false} tabs={false}>
+        <Layout back={false} tabs={false} heading="Login">
             <IonContent>
                 <IonGrid>
                     <IonRow class="ion-justify-content-start">

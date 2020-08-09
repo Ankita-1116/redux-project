@@ -15,11 +15,7 @@ const UserList = () => {
         setTabelData(response)
     }
     const columns = [
-        {
-            name: 'Id',
-            selector: 'id',
-            sortable: true,
-        },
+    
         {
             name: 'First Name',
             selector: 'firstName',
@@ -47,12 +43,12 @@ const UserList = () => {
         },
         {
             name: 'Num Visits',
-            selector: 'numvisits',
+            selector: 'numVisits',
             sortable: true,
         },
         {
-            name: 'Visits',
-            selector: 'visits',
+            name: 'Last Visited On',
+            selector: 'lastVisitedOn',
             sortable: true,
         },
     ];
@@ -105,10 +101,9 @@ const UserList = () => {
 
 
     return (
-        <Layout back={false} tabs={true} heading="Please enter your details ">
+        <Layout back={false} tabs={false} heading="User List">
 
             <DataTable
-                title="User List"
                 columns={columns}
                 data={tableData}
                 defaultSortField="title"

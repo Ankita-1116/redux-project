@@ -5,11 +5,18 @@ import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel } from '@io
 import { Route, Redirect } from 'react-router'
 import UserInfo from './UserInfo'
 import Tabs from '../components/Tabs'
+import { useSelector } from 'react-redux'
+import UserList from './UserList'
+import Login from './Login'
 
 function Home() {
+    const globalState = useSelector((state: any) => state);
+
     return <>
-        <Tabs />
-        </>
+        {
+            globalState.userType == 'admin' ? <UserList /> : <QRCode />
+        }
+    </>
 }
 
 export default Home

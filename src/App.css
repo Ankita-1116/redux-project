@@ -3,7 +3,7 @@
 }
 
 .tab-location {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 125px);
 }
 .input-wrap .label-fixed {
   min-width: 220px;

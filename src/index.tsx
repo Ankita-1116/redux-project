@@ -4,10 +4,28 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { Reducer } from './services/Reducer';
+import { persistReducer, persistStore } from "redux-persist";
+import AsyncStorage from '@react-native-community/async-storage';
+import { PersistGate } from 'redux-persist/integration/react'
+
+const config = {
+  key: 'root',
+  storage: AsyncStorage
+}
+const persistedReducer = persistReducer(config, Reducer);
+
+const store = createStore(persistedReducer);
+const persistedStore = persistStore(store);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistedStore}>
+      <App />
+    </PersistGate>
+  </Provider>,
   document.getElementById('root')
 );
 
