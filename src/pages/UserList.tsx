@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component';
 import Layout from '../components/Layout';
 import { IonButton } from '@ionic/react';
+import { roamerList_API } from '../services/Services';
 
 const UserList = () => {
+    const [tableData, setTabelData] = useState([])
+
+    useEffect(() => {
+        roamerList_API({}, OnListSuccess)
+    }, [])
+
+    const OnListSuccess = (status: any, response: any) => {
+        setTabelData(response)
+    }
     const columns = [
         {
             name: 'Id',
@@ -11,30 +21,44 @@ const UserList = () => {
             sortable: true,
         },
         {
-            name: 'Title',
-            selector: 'title',
+            name: 'First Name',
+            selector: 'firstName',
             sortable: true,
         },
         {
-            name: 'Year',
-            selector: 'year',
+            name: 'Last Name',
+            selector: 'lastName',
+            sortable: true,
+        },
+        {
+            name: 'Phone',
+            selector: 'phone',
+            sortable: true,
+        },
+        {
+            name: 'Email',
+            selector: 'email',
+            sortable: true,
+        },
+        {
+            name: 'ZipCode',
+            selector: 'zipCode',
+            sortable: true,
+        },
+        {
+            name: 'Num Visits',
+            selector: 'numvisits',
+            sortable: true,
+        },
+        {
+            name: 'Visits',
+            selector: 'visits',
             sortable: true,
         },
     ];
-    const data = [
-        { id: 1, title: 'Conan the Bsdsarbarian', year: '1982' },
-        { id: 11, title: 'Conan the dBarbarian', year: '1932' },
-        { id: 14, title: 'Conan sdsthe Barbarian', year: '1982' },
-        { id: 51, title: 'Conandas the Barbarian', year: '5982' },
-        { id: 16, title: 'Conan thsde Barbarian', year: '1972' },
-        { id: 13, title: 'Conansd the Barbarian', year: '1952' },
-        { id: 5, title: 'Conan thdfdfe Barbarian', year: '1972' },
-        { id: 61, title: 'Conan thdfe Barbarian', year: '1942' },
-        { id: 12, title: 'Conandfd the Barbarian', year: '1922' },
-        { id: 81, title: 'Conan the Badfrbarian', year: '1962' },
-    ];
-   
-    const actionsMemo = React.useMemo(() => <IonButton onClick={(e: any) => downloadCSV(data)}>Export</IonButton>, []);
+  
+
+    const actionsMemo = React.useMemo(() => <IonButton onClick={(e: any) => downloadCSV(tableData)}>Export</IonButton>, []);
 
     const convertArrayOfObjectsToCSV = (data: any) => {
         let result: any;
@@ -78,7 +102,7 @@ const UserList = () => {
         link.click();
     }
 
-   
+
 
     return (
         <Layout back={false} tabs={true} heading="Please enter your details ">
@@ -86,7 +110,7 @@ const UserList = () => {
             <DataTable
                 title="User List"
                 columns={columns}
-                data={data}
+                data={tableData}
                 defaultSortField="title"
                 pagination={true}
                 fixedHeader={true}

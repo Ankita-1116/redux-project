@@ -15,3 +15,14 @@ export const roamerSave_API = (params: any, callback: any) => {
             callback('error', error.message)
         })
 }
+export const roamerList_API = (params: any, callback: any) => {
+    getCall(constants.roamersList)
+        .then((response: any) => {
+            const responseData = response.data;
+            response.status == "200" && callback('success', responseData);
+        })
+        .catch((error: any) => {
+            console.log(error)
+            callback('error', error.message)
+        })
+}

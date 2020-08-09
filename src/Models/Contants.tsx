@@ -3,6 +3,7 @@ export const server = {
 }
 export const constants = {
     roamersSave: server.url + 'roamers/save',
+    roamersList: server.url + 'roamers/',
 }
 export const Toast = {
     timeInterval: 5000,

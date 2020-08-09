@@ -20,7 +20,15 @@ export const getCallByParamsInUrl = (url: any, data: any) => {
     return axios.get(url + '?' + queryUrl);
 }
 export const getCall = (url: any) => {
-    return axios.get(url);
+    return axios.get(url, {
+        auth: {
+            username: 'divesh',
+            password: 'restapi'
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 }
 export const goToPage = (history: any, page: any) => {
     history.push({
