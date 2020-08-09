@@ -87,7 +87,7 @@ function UserInfo() {
         }, 10000);
     }
     return <>
-        <Layout back={false} tabs={false} heading="Please enter your details ">
+        <Layout back={false} tabs={true} heading="Please enter your details ">
             <IonContent>
                 <IonGrid>
                     <IonRow class="">
