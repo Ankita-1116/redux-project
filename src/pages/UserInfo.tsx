@@ -34,11 +34,11 @@ function UserInfo() {
     const setValueFromChild = (name: any, value: any, required: any) => {
         if (name == "firstName") {
             setFirstName(value);
-            required && setFirstNameErrorMsz(checkValidation.setErrorMsz('firstName', value));
+            required && setFirstNameErrorMsz(checkValidation.setErrorMsz('blank', value));
         }
         if (name == "lastName") {
             setLastName(value);
-            required && setLastNameErrorMsz(checkValidation.setErrorMsz('lastName', value));
+            required && setLastNameErrorMsz(checkValidation.setErrorMsz('blank', value));
         }
         if (name == "email") {
             setEmail(value);
@@ -56,8 +56,8 @@ function UserInfo() {
 
     }
     const getLogin = () => {
-        setFirstNameErrorMsz(checkValidation.setErrorMsz('firstName', firstName));
-        setLastNameErrorMsz(checkValidation.setErrorMsz('lastName', lastName));
+        setFirstNameErrorMsz(checkValidation.setErrorMsz('blank', firstName));
+        setLastNameErrorMsz(checkValidation.setErrorMsz('blank', lastName));
         setEmailErrorMsz(checkValidation.setErrorMsz('email', email));
         setMobileErrorMsz(checkValidation.setErrorMsz('mobileNumber', mobileNumber));
         setZipCodeErrorMsz(checkValidation.setErrorMsz('zipCode', zipCode));
@@ -83,7 +83,7 @@ function UserInfo() {
             data: response.data[0]
         });
         setTimeout(() => {
-            window.location.href = "/qrscan"
+            window.location.href = "/home"
         }, 10000);
     }
     return <>
@@ -136,7 +136,7 @@ function UserInfo() {
                                 </IonCol>
 
                                 <IonCol size="12" class="ion-margin-top">
-                                    <Form name="button" color="success" title="Login" callback={getLogin} />
+                                    <Form name="button" color="success" title="Submit" callback={getLogin} />
                                 </IonCol>
                             </IonRow>
                         </IonCol>
