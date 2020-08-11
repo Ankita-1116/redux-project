@@ -9,7 +9,8 @@ const Header = (props: any) => {
     const dispatch = useDispatch();
     const globaleState: any = useSelector(state => state)
     const Homepage = '/home';
-    console.log(history)
+
+    console.log("header")
     const goback = () => {
         history.goBack();
     }
@@ -20,32 +21,50 @@ const Header = (props: any) => {
     return (
         <IonHeader translucent>
             {
-                history.location.pathname == Homepage ?
-                    <IonToolbar className="header-toolbar">
-                        <IonTitle className="header-title ion-padding-horizontal ion-text-center">{props.heading}</IonTitle>
-                        {
-                            globaleState['userType'] != '' &&
-                            <IonButtons slot="end" onClick={goHome} className="back-icon">
-                                <IonIcon icon={home} />
-                            </IonButtons>
-                        }
-                    </IonToolbar> :
-                    <IonToolbar className="header-toolbar">
-                        {
-                            globaleState['userType'] != '' && history.location.pathname != Homepage &&
-                            <IonButtons slot="start" onClick={goback} className="back-icon">
-                                <IonIcon icon={chevronBack} />
-                                <IonLabel>Back</IonLabel>
-                            </IonButtons>
-                        }
-                        <IonTitle className="header-title sm ion-padding-horizontal ion-text-center">{props.heading}</IonTitle>
-                        {
-                            globaleState['userType'] != '' &&
-                            <IonButtons slot="end" onClick={goHome} className="back-icon">
-                                <IonIcon icon={home} />
-                            </IonButtons>
-                        }
-                    </IonToolbar>
+                <IonToolbar className="header-toolbar">
+                    {
+                        !globaleState.header.rootPage &&
+                        <IonButtons slot="start" onClick={goback} className="back-icon">
+                            <IonIcon icon={chevronBack} />
+                            <IonLabel>Back</IonLabel>
+                        </IonButtons>
+                    }
+                    <IonTitle className="header-title sm ion-padding-horizontal ion-text-center">{globaleState.header.heading}</IonTitle>
+                    {
+                        globaleState.userType != '' &&
+                        <IonButtons slot="end" onClick={goHome} className="back-icon">
+                            <IonIcon icon={home} />
+                        </IonButtons>
+                    }
+                </IonToolbar>
+
+
+                // history.location.pathname == Homepage ?
+                //     <IonToolbar className="header-toolbar">
+                //         <IonTitle className="header-title ion-padding-horizontal ion-text-center">{props.heading}</IonTitle>
+                //         {
+                //             globaleState['userType'] != '' &&
+                //             <IonButtons slot="end" onClick={goHome} className="back-icon">
+                //                 <IonIcon icon={home} />
+                //             </IonButtons>
+                //         }
+                //     </IonToolbar> :
+                //     <IonToolbar className="header-toolbar">
+                //         {
+                //             globaleState['userType'] != '' && history.location.pathname != Homepage &&
+                //             <IonButtons slot="start" onClick={goback} className="back-icon">
+                //                 <IonIcon icon={chevronBack} />
+                //                 <IonLabel>Back</IonLabel>
+                //             </IonButtons>
+                //         }
+                //         <IonTitle className="header-title sm ion-padding-horizontal ion-text-center">{props.heading}</IonTitle>
+                //         {
+                //             globaleState['userType'] != '' &&
+                //             <IonButtons slot="end" onClick={goHome} className="back-icon">
+                //                 <IonIcon icon={home} />
+                //             </IonButtons>
+                //         }
+                //     </IonToolbar>
             }
         </IonHeader>
     )

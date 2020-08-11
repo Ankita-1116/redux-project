@@ -3,10 +3,16 @@ import DataTable from 'react-data-table-component';
 import Layout from '../components/Layout';
 import { IonButton } from '@ionic/react';
 import { roamerList_API } from '../services/Services';
+import { useDispatch } from 'react-redux';
 
 const UserList = () => {
-    const [tableData, setTabelData] = useState([])
+    const [tableData, setTabelData] = useState([]);
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch({type:"HEADER_OBJ",header:{rootPage:true,heading:"User List"}})
+    }, [])
+     console.log("Userlist")   
     useEffect(() => {
         roamerList_API({}, OnListSuccess)
     }, [])

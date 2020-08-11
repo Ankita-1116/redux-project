@@ -19,7 +19,7 @@ const persistedReducer = persistReducer(config, Reducer);
 
 const store = createStore(persistedReducer);
 const persistedStore = persistStore(store);
-
+console.log("Index.tsx")
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistedStore}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import QRCode from '../components/QRCode'
 import { IonReactRouter } from '@ionic/react-router'
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel } from '@ionic/react'
@@ -11,10 +11,10 @@ import Login from './Login'
 
 function Home() {
     const globalState = useSelector((state: any) => state);
-
+    console.log("Home",globalState);
     return <>
         {
-            globalState.userType == 'admin' ? <UserList /> : <QRCode />
+            globalState && globalState.userType == 'admin' ? <UserList /> : <QRCode />
         }
     </>
 }

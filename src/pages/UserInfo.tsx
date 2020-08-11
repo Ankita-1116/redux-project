@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Tabs from '../components/Tabs'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
@@ -9,8 +9,16 @@ import CustomToast from '../components/CustomToast'
 import checkValidation from '../services/Validation'
 import { Toast } from '../Models/Contants'
 import { useHistory } from 'react-router'
+import { useDispatch } from 'react-redux'
 
 function UserInfo() {
+    const dispatch = useDispatch()
+
+    console.log("QR cOde")
+    useEffect(() => {
+        dispatch({type:"HEADER_OBJ",header:{rootPage:false,heading:"Please enter your details"}})
+    }, [])
+
     const history = useHistory()
     const [showLoading, setShowLoading] = useState(false);
 
@@ -87,7 +95,7 @@ function UserInfo() {
         }, 10000);
     }
     return <>
-        <Layout back={false} tabs={true} heading="Please enter your details ">
+        <Layout tabs={true}>
             <IonContent>
                 <IonGrid>
                     <IonRow class="">

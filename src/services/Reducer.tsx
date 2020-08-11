@@ -1,7 +1,8 @@
 import React from 'react'
 
 const intialState={
-    userType:''
+    userType:'',
+    header:{back:true,heading:"",rootPage:false}
 }
 
 export const Reducer = (state: any = intialState, action: any) => {
@@ -10,6 +11,8 @@ export const Reducer = (state: any = intialState, action: any) => {
             return Object.assign({}, state, action)
         case "RESET":
           return intialState;
+        case "HEADER_OBJ":
+            return Object.assign({}, state, action)
     
        default: 
           return state; 

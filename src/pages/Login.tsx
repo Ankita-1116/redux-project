@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Form from '../components/Form';
 import checkValidation from '../services/Validation';
 import { useHistory } from 'react-router';
@@ -19,6 +19,12 @@ export default function Login() {
     const dispatch = useDispatch()
     const [password, setPassword] = useState('');
     const [passwordErrorMsz, setPasswordErrorMsz] = useState(' ');
+    console.log("Login")
+
+    useEffect(() => {
+        dispatch({ type: "HEADER_OBJ", header: { rootPage: true, heading: "Login" } })
+    }, [])
+
 
     const setValueFromChild = (name: any, value: any, required: any) => {
         console.log(name, value, required)
@@ -40,17 +46,19 @@ export default function Login() {
         setMobileErrorMsz(checkValidation.setErrorMsz('mobileNumber', mobileNumber));
         setPasswordErrorMsz(checkValidation.setErrorMsz('blank', password));
         setUserNameErrorMsz(checkValidation.setErrorMsz('blank', username));
-        console.log('object', username)
         if ((username == '' && password == '')) {
 
         }
         else if (username == 'admin' && password == '123456') {
             dispatch({ type: "ADD", userType: 'admin' })
-            history.push('/home');
+            dispatch({ type: "HEADER_OBJ", header: { back: false, heading: "User List" } })
+            history.push('/userlist');
         }
         else if (username == 'reception' && password == '654321') {
-            dispatch({ type: "ADD", userType: 'reception' })
-            history.push('/home');
+            dispatch({ type: "ADD", userType: 'reception' });
+            dispatch({ type: "HEADER_OBJ", header: { back: false, heading: "Login" } })
+
+            history.push('/qrscan');
         }
         else {
             setPasswordErrorMsz('Please check your credentials!!!')
@@ -66,7 +74,7 @@ export default function Login() {
         history.push('/qrscan');
     }
     return <>
-        <Layout back={false} tabs={false} heading="Login">
+        <Layout tabs={false}>
             <IonContent>
                 <IonGrid>
                     <IonRow class="ion-justify-content-start">

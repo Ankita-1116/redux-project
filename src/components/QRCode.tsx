@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import QrReader from 'react-qr-reader'
 import { IonToast, IonContent, IonGrid, IonRow, IonCol, IonLoading } from '@ionic/react'
 import Tabs from './Tabs';
@@ -9,12 +9,18 @@ import CustomToast from './CustomToast';
 import { Toast } from '../Models/Contants';
 import { roamerSave_API } from '../services/Services';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 function QRCode() {
     const history = useHistory()
     const [QRResFlag, setQRResFlag] = useState(true)
     const [showLoading, setShowLoading] = useState(false);
+    const dispatch = useDispatch();
 
+    console.log("QR cOde")
+    useEffect(() => {
+        dispatch({type:"HEADER_OBJ",header:{rootPage:true,heading:"Please flash the QR-Code you received in your email"}})
+    }, [])
     const handleScan = (res: any) => {
         if (QRResFlag && res) {
             setQRResFlag(false);
@@ -43,7 +49,7 @@ function QRCode() {
         console.error(err)
     }
     return <>
-        <Layout back={false} tabs={true} heading="Please flash the QR-Code you received in your email">
+        <Layout tabs={true}>
             <IonContent>
                 <IonGrid>
                     <IonRow class="ion-justify-content-center ">
@@ -65,7 +71,7 @@ function QRCode() {
         isOpen={showLoading}
         onDidDismiss={() => setShowLoading(false)}
         message={'Please wait...'}
-        duration={10000}
+        duration={100000}
       />
     </>
 }
