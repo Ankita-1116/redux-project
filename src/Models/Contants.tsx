@@ -1,10 +1,11 @@
 export const server = {
-    url: 'https://rest.digishaala.com/api/'
-}
+  url: "/",
+};
 export const constants = {
-    roamersSave: server.url + 'roamers/save',
-    roamersList: server.url + 'roamers/all',
-}
+  login: server.url + "users/login",
+  roamersSave: server.url + "visitors/save",
+  roamersList: server.url + "visitors/all",
+};
 export const Toast = {
-    timeInterval: 5000,
-}
+  timeInterval: 5000,
+};
