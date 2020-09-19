@@ -115,7 +115,6 @@ function UserInfo() {
   };
 
   const onUserRegisterSuccess = (status: any, response: any) => {
-    dispatch({ type: GLOBAL_DATA, payload: { loaderVisible: false } });
     setShowLoading(false);
     history.push("/userData", {
       data: response.data[0],
