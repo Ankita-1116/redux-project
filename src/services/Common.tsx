@@ -11,8 +11,8 @@ export const postCall = (url: any, data: any, access_token: any) => {
     //     password: 'restapi'
     // },
     headers: {
-      // 'Content-Type': 'application/json'
       Authorization: `Bearer ${access_token}`,
+      "Content-Type": "application/json",
     },
   });
 };
